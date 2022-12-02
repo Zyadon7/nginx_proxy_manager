@@ -1,1 +1,15 @@
-sdf
+version: '3'
+services:
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      - '${PORT80}:80'
+      - '${PORT81}:81'
+      - '${PORT443}:443'
+    volumes:
+    #  - ./data:/data
+    #  - ./letsencrypt:/etc/letsencrypt
+      - ${DATA}:/data
+      - ${LETSENCRYPT}:/letsencrypt
+      - ${LETSENCRYPTLOG}:/var/log/letsencrypt/letsencrypt.log
